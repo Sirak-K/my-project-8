@@ -1,7 +1,10 @@
 {
-    "java.project.sourcePaths": ["src"],
-    "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-17",
+            "path": "C:\\Users\\SSIRA\\- [ CODING ] -\\- [ CODING ] - [ JAVA ]\\- JAVA - [ SOFTWARE ]\\Java Software - Java 17 LTS\\jdk-17.0.8",
+            "default": true
+        }
     ]
 }
