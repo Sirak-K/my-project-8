@@ -1,9 +1,6 @@
 # Address Book App
 
 ## Table of Contents
-
-- [Address Book App](#address-book-app)
-  - [Table of Contents](#table-of-contents)
   - [Project Description](#project-description)
   - [Features](#features)
   - [How to Install](#how-to-install)
