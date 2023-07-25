@@ -1,5 +1,8 @@
 package com.example;
 
+/**
+ * Represents a contact with attributes such as first name, last name, email, and phone number.
+ */
 public class Contact {
     // Attributes to store contact information
     private String firstName;    // Holds the first name of the contact
@@ -7,7 +10,14 @@ public class Contact {
     private String email;        // Holds the email address of the contact
     private String phoneNumber;  // Holds the phone number of the contact
 
-    // Constructor to initialize a new Contact object with provided information
+    /**
+     * Constructor to initialize a new Contact object with provided information.
+     *
+     * @param firstName   The first name of the contact.
+     * @param lastName    The last name of the contact.
+     * @param email       The email address of the contact.
+     * @param phoneNumber The phone number of the contact.
+     */
     public Contact(String firstName, String lastName, String email, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -17,51 +27,87 @@ public class Contact {
 
     // Getter and Setter methods to access and modify contact attributes
 
-    // Getter for retrieving the first name of the contact
+    /**
+     * Returns the first name of the contact.
+     *
+     * @return The first name of the contact.
+     */
     public String getFirstName() {
         return firstName;
     }
 
-    // Setter for updating the first name of the contact
+    /**
+     * Sets the first name of the contact.
+     *
+     * @param firstName The first name of the contact to set.
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    // Getter for retrieving the last name of the contact
+    /**
+     * Returns the last name of the contact.
+     *
+     * @return The last name of the contact.
+     */
     public String getLastName() {
         return lastName;
     }
 
-    // Setter for updating the last name of the contact
+    /**
+     * Sets the last name of the contact.
+     *
+     * @param lastName The last name of the contact to set.
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    // Getter for retrieving the email address of the contact
+    /**
+     * Returns the email address of the contact.
+     *
+     * @return The email address of the contact.
+     */
     public String getEmail() {
         return email;
     }
 
-    // Setter for updating the email address of the contact
+    /**
+     * Sets the email address of the contact.
+     *
+     * @param email The email address of the contact to set.
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
-    // Getter for retrieving the phone number of the contact
+    /**
+     * Returns the phone number of the contact.
+     *
+     * @return The phone number of the contact.
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    // Setter for updating the phone number of the contact
+    /**
+     * Sets the phone number of the contact.
+     *
+     * @param phoneNumber The phone number of the contact to set.
+     */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    // Override toString method to provide a formatted representation of the contact details
+    /**
+     * Provides a formatted representation of the contact details.
+     *
+     * @return A formatted string representing the contact details.
+     */
     @Override
     public String toString() {
-        return "Name: " + firstName + " " + lastName + "\n" +
-               "Email: " + email + "\n" +
-               "Phone: " + phoneNumber;
+        return "Name: " + firstName + " " + lastName + "\n"
+               + "Email: " + email + "\n"
+               + "Phone: " + phoneNumber;
     }
 }

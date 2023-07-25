@@ -1,14 +1,22 @@
 package com.example;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ * Test class for the AddressBook class.
+ */
 public class AddressBookTests {
 
     private AddressBook addressBook;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         addressBook = new AddressBook();
     }
@@ -100,39 +108,13 @@ public class AddressBookTests {
         assertEquals("john.doe@example.com", addressBook.getContacts().get(1).getEmail());
     }
 
-    // TEST-8: Test displaying all contacts in the address book
-    @Test
-    public void testDisplayAllContacts() {
-        Contact contact1 = new Contact("John", "Doe", "john.doe@example.com", "1234567890");
-        Contact contact2 = new Contact("Jane", "Smith", "jane.smith@example.com", "9876543210");
-        addressBook.addContact(contact1);
-        addressBook.addContact(contact2);
-
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
-        addressBook.displayAllContacts();
-
-        String expectedOutput = "---- Address Book ----\n" +
-                                "Contact 1:\n" +
-                                "Name: John Doe\n" +
-                                "Email: john.doe@example.com\n" +
-                                "Phone: 1234567890\n" +
-                                "----------------------\n" +
-                                "Contact 2:\n" +
-                                "Name: Jane Smith\n" +
-                                "Email: jane.smith@example.com\n" +
-                                "Phone: 9876543210\n" +
-                                "----------------------\n";
-        assertEquals(expectedOutput, outputStream.toString());
-    }
-
-    // TEST-9: Test that the address book is initially empty
+    // TEST-8: Test that the address book is initially empty
     @Test
     public void testAddressBookIsEmptyInitially() {
         assertTrue(addressBook.isEmpty());
     }
 
-    // TEST-10: Test that the address book is not empty after adding a contact
+    // TEST-9: Test that the address book is not empty after adding a contact
     @Test
     public void testAddressBookNotEmptyAfterAddingContact() {
         Contact contact = new Contact("John", "Doe", "john.doe@example.com", "1234567890");

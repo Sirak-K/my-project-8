@@ -82,7 +82,7 @@
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>3.6.3</version>
+                  <version>3.9.3</version>
                 </requireMavenVersion>
               </rules>
               <fail>true</fail>
@@ -192,6 +192,14 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+        <plugin>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-maven-plugin</artifactId>
+        <version>0.0.7</version>
+        <configuration>
+            <mainClass>com.example.AddressBookGUI</mainClass> 
+        </configuration>
       </plugin>
     </plugins>
   </build>

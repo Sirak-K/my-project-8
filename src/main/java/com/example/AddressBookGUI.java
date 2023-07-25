@@ -5,17 +5,33 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * The main class that represents the GUI for the Address Book application.
+ */
 public class AddressBookGUI extends Application {
 
+    private static final int MAGIC_NUMBER_3 = 3;
+    private static final int MAGIC_NUMBER_4 = 4;
+    private static final int MAGIC_NUMBER_300 = 300;
+    private static final int MAGIC_NUMBER_400 = 400;
     private AddressBook addressBook;
 
+    /**
+     * The entry point for the JavaFX application.
+     *
+     * @param args Command-line arguments.
+     */
     public static void main(String[] args) {
         launch(args);
     }
@@ -53,13 +69,18 @@ public class AddressBookGUI extends Application {
         // Add the MenuBar to the VBox
         vbox.getChildren().add(menuBar);
 
+
+
         // Create the Scene and set it in the Stage
-        Scene scene = new Scene(vbox, 400, 300);
+        Scene scene = new Scene(vbox, MAGIC_NUMBER_400, MAGIC_NUMBER_300);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Address Book");
         primaryStage.show();
     }
 
+    /**
+     * Displays a dialog to add a new contact.
+     */
     private void showAddContactDialog() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Add Contact");
@@ -75,11 +96,11 @@ public class AddressBookGUI extends Application {
             String[] detailsArray = contactDetails.split(",");
 
             // Check if the input has all the required attributes
-            if (detailsArray.length == 4) {
+            if (detailsArray.length == MAGIC_NUMBER_4) {
                 String firstName = detailsArray[0].trim();
                 String lastName = detailsArray[1].trim();
                 String email = detailsArray[2].trim();
-                String phoneNumber = detailsArray[3].trim();
+                String phoneNumber = detailsArray[MAGIC_NUMBER_3].trim();
 
                 // Create a new Contact object
                 Contact newContact = new Contact(firstName, lastName, email, phoneNumber);
@@ -94,6 +115,9 @@ public class AddressBookGUI extends Application {
         });
     }
 
+    /**
+     * Displays a dialog to edit an existing contact.
+     */
     private void showEditContactDialog() {
         // Check if there are any contacts to edit
         if (addressBook.isEmpty()) {
@@ -126,20 +150,26 @@ public class AddressBookGUI extends Application {
                 // Here, we use multiple TextInputDialogs to get each attribute's updated value
                 editDialog.setContentText("First Name:");
                 Optional<String> firstNameResult = editDialog.showAndWait();
-                if (!firstNameResult.isPresent()) return; // User canceled the edit, return without further processing
-
+                if (!firstNameResult.isPresent()) {
+                    return; // User canceled the edit, return without further processing
+                }
                 editDialog.setContentText("Last Name:");
                 Optional<String> lastNameResult = editDialog.showAndWait();
-                if (!lastNameResult.isPresent()) return;
+                if (!lastNameResult.isPresent()) {
+                    return;
+                }
 
                 editDialog.setContentText("Email:");
                 Optional<String> emailResult = editDialog.showAndWait();
-                if (!emailResult.isPresent()) return;
+                if (!emailResult.isPresent()) {
+                    return;
+                }
 
                 editDialog.setContentText("Phone Number:");
                 Optional<String> phoneNumberResult = editDialog.showAndWait();
-                if (!phoneNumberResult.isPresent()) return;
-
+                if (!phoneNumberResult.isPresent()) {
+                    return;
+                }
                 // Parse the updated contact details
                 String firstName = firstNameResult.get().trim();
                 String lastName = lastNameResult.get().trim();
@@ -161,15 +191,15 @@ public class AddressBookGUI extends Application {
         });
     }
 
-
-
+    /**
+     * Displays a dialog to delete an existing contact.
+     */
     private void showDeleteContactDialog() {
         // Check if there are any contacts to delete
         if (addressBook.isEmpty()) {
             showAlert("Delete Contact", "No contacts found in the address book.");
             return;
         }
-
 
         // Create a list of contact names to display in the ChoiceDialog
         List<String> contactNames = new ArrayList<>();
@@ -197,15 +227,23 @@ public class AddressBookGUI extends Application {
         });
     }
 
+    /**
+     * Displays an alert dialog with the given title and message.
+     *
+     * @param title   The title of the alert.
+     * @param message The message to be displayed in the alert.
+     */
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
-private void showAlert(String title, String message) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle(title);
-    alert.setHeaderText(null);
-    alert.setContentText(message);
-    alert.showAndWait();
-}
-
+    /**
+     * Displays a dialog to search for contacts based on a keyword.
+     */
     private void showSearchContactDialog() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Search Contact");
@@ -229,7 +267,9 @@ private void showAlert(String title, String message) {
         });
     }
 
-
+    /**
+     * Displays a dialog to sort contacts based on a chosen criteria (first name, last name, or email).
+     */
     private void showSortContactDialog() {
         // Check if there are any contacts to sort
         if (addressBook.isEmpty()) {
@@ -257,6 +297,8 @@ private void showAlert(String title, String message) {
                 case "Email":
                     addressBook.sortContacts(Comparator.comparing(Contact::getEmail));
                     break;
+                default:
+                    // ... (handle the case if none of the options match)
             }
             System.out.println("Contacts sorted by " + selectedCriteria);
             // Display the sorted contacts (optional)
